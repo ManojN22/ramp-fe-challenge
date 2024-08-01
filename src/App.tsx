@@ -65,7 +65,7 @@ export function App() {
             if (newValue === null) {
               return
             }
-            else if(newValue.firstName === "All"){
+            else if(newValue === EMPTY_EMPLOYEE){
               await loadAllTransactions();
               return;
             }
@@ -82,7 +82,7 @@ export function App() {
           {transactions !== null && (
             <button
               className="RampButton"
-              disabled={paginatedTransactionsUtils.loading}
+              disabled={paginatedTransactionsUtils.loading || paginatedTransactions?.nextPage==null}
               onClick={async () => {
                 await loadAllTransactions()
               }}

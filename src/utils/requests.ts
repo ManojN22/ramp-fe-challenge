@@ -32,7 +32,7 @@ export const getTransactionsPaginated = ({
   }
 
   const nextPage = end < data.transactions.length ? page + 1 : null
-
+  console.log(data.transactions)
   return {
     nextPage,
     data: data.transactions.slice(start, end),
@@ -43,18 +43,17 @@ export const getTransactionsByEmployee = ({ employeeId }: RequestByEmployeeParam
   if (!employeeId) {
     throw new Error("Employee id cannot be empty")
   }
-
+  console.log(data.transactions)
   return data.transactions.filter((transaction) => transaction.employee.id === employeeId)
 }
 
 export const setTransactionApproval = ({ transactionId, value }: SetTransactionApprovalParams): void => {
-  const transaction = data.transactions.find(
+  const transaction = data.transactions.findIndex(
     (currentTransaction) => currentTransaction.id === transactionId
   )
-
-  if (!transaction) {
+  if (transaction===-1) {
     throw new Error("Invalid transaction to approve")
   }
-
-  transaction.approved = value
+data.transactions[transaction].approved = value
+console.log(data.transactions)
 }
