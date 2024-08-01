@@ -149,7 +149,8 @@ hr.RampBreak--l {
 }
 
 .RampInputCheckbox--input {
-  display: none;
+  display:none;
+
 }
 
 .RampButton {
