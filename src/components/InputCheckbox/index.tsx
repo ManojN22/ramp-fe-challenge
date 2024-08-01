@@ -1,10 +1,11 @@
 import classNames from "classnames"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { InputCheckboxComponent } from "./types"
+import { check } from "prettier"
 
 export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, disabled, onChange }) => {
   const { current: inputId } = useRef(`RampInputCheckbox-${id}`)
-
+  const [checks,setChecks] = useState(false);
   return (
     <div className="RampInputCheckbox--container" data-testid={inputId}>
       <label
@@ -13,14 +14,21 @@ export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, dis
           "RampInputCheckbox--label-disabled": disabled,
         })}
       />
-      <input
+       <input
         id={inputId}
         type="checkbox"
-        className="RampInputCheckbox--input"
+        // className="RampInputCheckbox--input"
         checked={checked}
-        disabled={disabled}
-        onChange={() => onChange(!checked)}
+        // disabled={disabled}
+      
+       
+        onChange={() => {
+          console.log(!checked)
+          onChange(!checked)
+        }}
       />
+      
+      
     </div>
   )
 }
